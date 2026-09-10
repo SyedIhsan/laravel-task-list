@@ -126,7 +126,7 @@ public function rules(): array
     return [
         'title' => 'required|max:255',
         'description' => 'required',
-        'long_description' => 'required',
+        'long_description' => 'nullable',
     ];
 }
 ```
