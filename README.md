@@ -93,7 +93,7 @@ One command and the app has twenty realistic tasks to work with. This made it mu
 | `GET` | `/tasks/{task}` | `tasks.show` |
 | `GET` | `/tasks/{task}/edit` | `tasks.edit` |
 | `PUT` | `/tasks/{task}` | `tasks.update` |
-| `DELETE` | `/tasks/{task}` | `tasks.delete` |
+| `DELETE` | `/tasks/{task}` | `tasks.destroy` |
 
 What clicked here: **named routes**. Because every route has a name, the views call `route('tasks.show', $task)` instead of hardcoding `/tasks/5`. Change the URL structure later and nothing in the templates breaks. `Route::fallback()` catches anything that matches nothing.
 
@@ -167,7 +167,7 @@ Two Blade directives that every form in this project needs, for two unrelated re
 **`@method('PUT')` / `@method('DELETE')`** exists because HTML forms only support `GET` and `POST` — the other verbs simply aren't available in the spec. The directive drops in a hidden `_method` field, and Laravel reads it and routes the request as if it really were a `PUT` or `DELETE`. That's what lets the routes stay properly RESTful:
 
 ```html
-<form action="{{ route('tasks.delete', $task) }}" method="POST">
+<form action="{{ route('tasks.destroy', $task) }}" method="POST">
     @csrf
     @method('DELETE')
     <button type="submit">Delete</button>
